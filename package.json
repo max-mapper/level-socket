@@ -1,0 +1,23 @@
+{
+  "name": "level-socket",
+  "version": "0.0.1",
+  "description": "websocket server backend for leveldb",
+  "main": "index.js",
+  "scripts": {
+    "start": "node test.js",
+    "build": "browserify login.js -o www/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/maxogden/level-socket.git"
+  },
+  "author": "max ogden",
+  "license": "BSD",
+  "dependencies": {
+    "websocket-stream": "~0.2.0",
+    "level-sublevel": "~4.8.0",
+    "multilevel": "~5.3.1",
+    "auth-socket": "~0.2.0",
+    "doorknob": "~0.3.0"
+  }
+}
