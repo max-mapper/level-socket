@@ -1,6 +1,6 @@
 {
   "name": "level-socket",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "backend server that exposes a leveldb over authenticated cross domain websockets",
   "main": "index.js",
   "scripts": {
@@ -15,9 +15,8 @@
   "license": "BSD",
   "dependencies": {
     "websocket-stream": "~0.2.0",
-    "level-sublevel": "~4.8.0",
     "multilevel": "~5.3.1",
     "auth-socket": "~0.2.0",
-    "doorknob": "~1.0.0"
+    "doorknob": "~2.0.0"
   }
 }

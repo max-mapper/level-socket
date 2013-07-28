@@ -1,6 +1,5 @@
 var createDoorknob = require('doorknob/server')
 var authSocket = require('auth-socket')
-var sublevel = require('level-sublevel')
 var multilevel = require('multilevel')
 var websocket = require('websocket-stream')
 var url = require('url')
@@ -13,7 +12,7 @@ module.exports = function(opts) {
     else if (err && err === 'not logged in') var loggedOut = true
     var parsed = url.parse(req.url, true)
     var id = parsed.pathname.split('/')[1]
-    var db = sublevel(server.doorknob.db).sublevel(id)
+    var db = server.doorknob.db.sublevel(id)
     var ws = websocket(socket)
     ws.pipe(process.stdout)
     var multiOpts = {}
