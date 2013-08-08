@@ -1,6 +1,6 @@
 {
   "name": "level-socket",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "backend server that exposes a leveldb over authenticated cross domain websockets",
   "main": "index.js",
   "scripts": {

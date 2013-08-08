@@ -7,7 +7,7 @@ var url = require('url')
 module.exports = function(opts) {
   var server = createDoorknob(opts)
 
-  authSocket({ httpServer: server }, function onSocket(err, req, socket, head) {
+  return authSocket({ httpServer: server }, function onSocket(err, req, socket, head) {
     if (err && err !== 'not logged in') return console.error(err)
     else if (err && err === 'not logged in') var loggedOut = true
     var parsed = url.parse(req.url, true)
@@ -32,6 +32,4 @@ module.exports = function(opts) {
       }
     }
   }
-  
-  return server
 }
