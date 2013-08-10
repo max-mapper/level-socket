@@ -6,7 +6,7 @@ var url = require('url')
 
 module.exports = function(opts) {
   var server = createDoorknob(opts)
-
+  
   return authSocket({ httpServer: server }, function onSocket(err, req, socket, head) {
     if (err && err !== 'not logged in') return console.error(err)
     else if (err && err === 'not logged in') var loggedOut = true
@@ -14,7 +14,6 @@ module.exports = function(opts) {
     var id = parsed.pathname.split('/')[1]
     var db = server.doorknob.db.sublevel(id)
     var ws = websocket(socket)
-    ws.pipe(process.stdout)
     var multiOpts = {}
     if (loggedOut) multiOpts = { access: accessControl }
     var multilevelServer = multilevel.server(db, multiOpts)
@@ -22,6 +21,14 @@ module.exports = function(opts) {
       multilevelServer.destroy()
     })
     ws.pipe(multilevelServer).pipe(ws)
+    if (opts.verbose) {
+      ws.on('data', function(op) {
+        console.log(id, 'incoming', op.trim())
+      })
+      multilevelServer.on('data', function(op) {
+        console.log(id, 'outgoing', op.trim())
+      })
+    }
   })
 
   function accessControl(user, db, method, args) {
